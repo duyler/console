@@ -56,7 +56,7 @@ final class ConsoleApplication
         } catch (Throwable $exception) {
             $bus->reset();
             $applicationBuilder->getContainer()->finalize();
-            echo $exception->getMessage();
+            throw $exception;
         }
     }
 }

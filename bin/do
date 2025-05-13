@@ -10,6 +10,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 try {
     $app = new ConsoleApplication();
     $app->run();
+    echo "\033[42m Done!";
 } catch (Throwable $exception) {
-    echo $exception->getMessage();
+    echo "\033[41m " . $exception->getMessage();
 }
