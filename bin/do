@@ -5,7 +5,28 @@ declare(strict_types=1);
 
 use Duyler\Console\ConsoleApplication;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+(function () {
+    $possibleFiles = [
+        __DIR__ . '/../../../autoload.php',
+        __DIR__ . '/../../autoload.php',
+        __DIR__ . '/../autoload.php',
+        __DIR__ . '/../vendor/autoload.php',
+    ];
+    $file = null;
+    foreach ($possibleFiles as $possibleFile) {
+        if (file_exists($possibleFile)) {
+            $file = $possibleFile;
+
+            break;
+        }
+    }
+
+    if (null === $file) {
+        throw new RuntimeException('Unable to locate autoload.php file.');
+    }
+
+    require_once $file;
+})();
 
 try {
     $app = new ConsoleApplication();
