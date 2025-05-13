@@ -39,6 +39,6 @@
         }
     },
     "bin": [
-        "bin/console"
+        "bin/do"
     ]
 }
