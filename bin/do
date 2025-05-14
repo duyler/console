@@ -28,10 +28,5 @@ use Duyler\Console\ConsoleApplication;
     require_once $file;
 })();
 
-try {
-    $app = new ConsoleApplication();
-    $app->run();
-    echo "\033[42m Done!";
-} catch (Throwable $exception) {
-    echo "\033[41m " . $exception->getMessage();
-}
+$app = new ConsoleApplication();
+$app->run();
