@@ -53,10 +53,11 @@ final class ConsoleApplication
 
         try {
             $bus->run();
+            echo "\033[42m Done! ";
         } catch (Throwable $exception) {
             $bus->reset();
             $applicationBuilder->getContainer()->finalize();
-            throw $exception;
+            echo "\033[41m {$exception->getMessage()} ";
         }
     }
 }
