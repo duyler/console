@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Duyler\Console;
 
 use Duyler\Builder\ApplicationBuilder;
+use Duyler\Builder\Config\BusConfig;
 use Duyler\EventBus\Build\Action;
+use Duyler\EventBus\Enum\Mode;
 use InvalidArgumentException;
 use RuntimeException;
 use Throwable;
@@ -27,7 +29,11 @@ final class ConsoleApplication
 
         $argv = $_SERVER['argv'] ?? throw new RuntimeException('Command line arguments not resolved');
 
-        $busBuilder = $applicationBuilder->getBusBuilder();
+        $busBuilder = $applicationBuilder->getBusBuilder(
+            new BusConfig(
+                mode: Mode::Queue,
+            ),
+        );
 
         $bus = $busBuilder
             ->loadPackages()
