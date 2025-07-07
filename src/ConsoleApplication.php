@@ -59,11 +59,13 @@ final class ConsoleApplication
 
         try {
             $bus->run();
-            echo "\033[42m Done! ";
+            echo PHP_EOL . "Done!" . PHP_EOL;
+            exit(0);
         } catch (Throwable $exception) {
             $bus->reset();
             $applicationBuilder->getContainer()->finalize();
-            echo "\033[41m {$exception->getMessage()} ";
+            echo PHP_EOL . $exception->getMessage() . PHP_EOL;
+            exit($exception->getCode());
         }
     }
 }
